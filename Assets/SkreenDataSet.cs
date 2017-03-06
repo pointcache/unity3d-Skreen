@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class SkreenDataSet : ScriptableObject {
 
     public Texture2D Atlas1;
+    public int PixelPerCharWidth = 7, PixelPerCharHeight = 14;
 
     public List<CharBind> bindings = new List<CharBind>()
     {

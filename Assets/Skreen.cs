@@ -5,19 +5,33 @@ using System.Collections;
 
 [Serializable]
 public class Skreen {
+    [Serializable]
+    public class Settings {
+        public int width, height;
+    }
+
     public int CursorX { get { return cursor.pos_x; } }
     public int CursorY { get { return cursor.pos_y; } }
     public int Width { get { return width; } }
+    public int Height { get { return height; } }
     public int Lines { get { return lines.Count; } }
     public Action<Skreen> Dirty = delegate { };
 
 
     int width;
+    int height;
     Cursor cursor;
     List<Line> lines = new List<Line>();
 
-    public Skreen(int _width) {
+    public Skreen(int _width, int _height) {
         width = _width;
+        height = _height;
+        cursor = new Cursor();
+    }
+
+    public Skreen(Settings settings) {
+        width = settings.width;
+        height = settings.height;
         cursor = new Cursor();
     }
 
@@ -65,10 +79,8 @@ public class Skreen {
                 if (i >= strLenght)
                     contents[i] = ' ';
                 else {
-
                     contents[i] = str[i];
                 }
-                
             }
         }
     }
